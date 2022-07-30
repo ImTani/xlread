@@ -63,9 +63,9 @@ while again is True:
 
 base.withdraw()
 
-print("\n------------------------------\n")
-
 os.system("pause")
+
+print("\n------------------------------\n")
 
 subNum = int(input("\nEnter Subject Code : "))
 wb = op.load_workbook(path)
@@ -91,10 +91,7 @@ ws['C1'] = "Grade"
 
 h = 3
 
-if subNum in iter(subNumCheck):
-    pass
-else:
-    print("Subject Code doesn't exist. Empty File will be generated.")
+subNumCount = 0
 
 for cell1, cell2, cell3 in cell_obj:
     if cell2.value == subNum:
@@ -103,17 +100,20 @@ for cell1, cell2, cell3 in cell_obj:
         ws.cell(row=h, column=1).value = cell1.value
         ws.cell(row=h, column=2).value = cell2.value
         ws.cell(row=h, column=3).value = cell3.value
+        subNumCount += 1
 
         h += 2
 
+if subNumCount == 0:
+    print("\nSubject Code doesn't exist. Empty File will be generated.")
 
 savePath = fd.askdirectory(initialdir=currdir, title="Select location to save")
 
 if savePath:
     newWB.save(str(savePath) + "/Student Marks.xlsx")
-    print("New Excel file created! \nFile Located in :", savePath)
+    print("\nNew Excel file created! \n\nFile Located in :", savePath)
 else:
-    print("Folder not selected, saving to desktop.")
+    print("\nFolder not selected, saving to desktop.")
     newWB.save(os.path.expanduser('~') + "/desktop" + "/Student Marks.xlsx")
 
 print("\n------------------------------\n")
