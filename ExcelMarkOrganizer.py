@@ -34,5 +34,6 @@ cell_obj = sheet_obj['A2': str(d[maxCol])+str(maxRow)]
 
 for cell1, cell2, cell3 in cell_obj:
     if cell2.value == subNum:
+        cell2 = sheet_obj.cell(row=cell2.row + 1, column=cell2.column)
         cell3 = sheet_obj.cell(row=cell3.row + 1, column=cell3.column)
         print(cell1.value, cell2.value, cell3.value)
