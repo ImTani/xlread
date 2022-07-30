@@ -32,6 +32,11 @@ maxCol = sheet_obj.max_column
 
 cell_obj = sheet_obj['A2': str(d[maxCol])+str(maxRow)]
 
+newWB = op.Workbook()
+ws = newWB.active
+ws.title = "Marks for Sub. Code " + str(subNum)
+newWB.save("Student Marks.xlsx")
+
 for cell1, cell2, cell3 in cell_obj:
     if cell2.value == subNum:
         cell2 = sheet_obj.cell(row=cell2.row + 1, column=cell2.column)
