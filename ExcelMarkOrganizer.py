@@ -12,6 +12,7 @@ base = tk.Tk()
 # base.withdraw()
 base.geometry('400x120')
 base.title("Grade Viwer")
+var = tk.IntVar()
 
 currdir = os.getcwd()
 
@@ -32,7 +33,7 @@ def OpenFile():
     global path
     path = filePath
 
-    base.withdraw()
+    var.set(1)
 
 
 label = tk.Label(base, text="Click the button to select an Excel File",
@@ -43,6 +44,8 @@ browseButton = tk.Button(text="Browse Files", font=('Segoi_UI-Light 12'),
                          command=lambda: OpenFile())
 browseButton.pack(pady=20)
 
+browseButton.wait_variable(var)
+
 while again is True:
 
     filePath = path
@@ -52,7 +55,8 @@ while again is True:
         again = False
         break
     else:
-        a = input("No file selected. Do you want to try again? (y/n) : ")
+        a = input("No file selected. Press 'n' if you want to exit. Press 'y' "
+                  + "after selecting a file to continue : ")
 
     if a == "n":
         sys.exit()
