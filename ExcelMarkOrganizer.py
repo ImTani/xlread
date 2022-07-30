@@ -51,6 +51,7 @@ for cell1, cell2, cell3 in cell_obj:
         ws.cell(row=h, column=1).value = cell1.value
         ws.cell(row=h, column=2).value = cell2.value
         ws.cell(row=h, column=3).value = cell3.value
+
         h += 2
 
 newWB.save("Student Marks.xlsx")
