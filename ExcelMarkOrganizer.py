@@ -10,7 +10,7 @@ again = True
 
 base = tk.Tk()
 # base.withdraw()
-base.geometry('640x480')
+base.geometry('400x120')
 base.title("Grade Viwer")
 
 currdir = os.getcwd()
@@ -32,10 +32,16 @@ def OpenFile():
     global path
     path = filePath
 
+    base.withdraw()
 
-browseButton = tk.Button(text="Browse Files", padx=10, pady=10,
+
+label = tk.Label(base, text="Click the button to select an Excel File",
+                 font=('Segoi_UI_Light 16'))
+label.pack(pady=10)
+
+browseButton = tk.Button(text="Browse Files", font=('Segoi_UI-Light 12'),
                          command=lambda: OpenFile())
-browseButton.pack()
+browseButton.pack(pady=20)
 
 while again is True:
 
@@ -50,7 +56,6 @@ while again is True:
 
     if a == "n":
         sys.exit()
-
 
 os.system("pause")
 
@@ -87,10 +92,11 @@ for cell1, cell2, cell3 in cell_obj:
 
 savePath = fd.askdirectory(initialdir=currdir, title="Select location to save")
 
-newWB.save(str(savePath) + "/Student Marks.xlsx")
-
-print("New Excel file created! \nFile Located in :", savePath)
+if savePath:
+    newWB.save(str(savePath) + "/Student Marks.xlsx")
+    print("New Excel file created! \nFile Located in :", savePath)
+else:
+    print("Folder not selected, saving to desktop.")
+    newWB.save(os.path.expanduser('~') + "/desktop" + "/Student Marks.xlsx")
 
 os.system("pause")
-
-base.mainloop()
