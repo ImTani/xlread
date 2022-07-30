@@ -2,9 +2,11 @@ import openpyxl as op
 import tkinter as tk
 import tkinter.filedialog as fd
 import os
+import sys
 import string
 
 d = dict(enumerate(string.ascii_uppercase, 1))
+again = True
 
 base = tk.Tk()
 base.withdraw()
@@ -12,13 +14,30 @@ base.withdraw()
 base.title("Grade Viwer")
 
 currdir = os.getcwd()
-filePath = fd.askopenfilename(parent=base, initialdir=currdir,
-                              title='Please select an excel file.',
-                              filetypes=[
-                                ("Excel Files", ".xlsx")
-                              ])
 
-print("The chosen file is :", filePath)
+while again is True:
+
+    base.lift()
+    base.attributes('-topmost', True)
+    base.after_idle(base.attributes, '-topmost', False)
+
+    filePath = fd.askopenfilename(parent=base, initialdir=currdir,
+                                  title='Please select an excel file.',
+                                  filetypes=[
+                                     ("Excel Files", ".xlsx")
+                                  ])
+
+    if filePath != '':
+        print("The chosen file is :", filePath)
+        again = False
+        break
+    else:
+        a = input("No file selected. Do you want to try again? (y/n) : ")
+
+    if a == "n":
+        sys.exit()
+
+
 path = filePath
 
 os.system("pause")
