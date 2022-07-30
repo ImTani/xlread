@@ -9,14 +9,16 @@ d = dict(enumerate(string.ascii_uppercase, 1))
 again = True
 
 base = tk.Tk()
-base.withdraw()
-# base.geometry('640x480')
+# base.withdraw()
+base.geometry('640x480')
 base.title("Grade Viwer")
 
 currdir = os.getcwd()
 
-while again is True:
+path = ''
 
+
+def OpenFile():
     base.lift()
     base.attributes('-topmost', True)
     base.after_idle(base.attributes, '-topmost', False)
@@ -26,6 +28,18 @@ while again is True:
                                   filetypes=[
                                      ("Excel Files", ".xlsx")
                                   ])
+
+    global path
+    path = filePath
+
+
+browseButton = tk.Button(text="Browse Files", padx=10, pady=10,
+                         command=lambda: OpenFile())
+browseButton.pack()
+
+while again is True:
+
+    filePath = path
 
     if filePath != '':
         print("The chosen file is :", filePath)
@@ -37,8 +51,6 @@ while again is True:
     if a == "n":
         sys.exit()
 
-
-path = filePath
 
 os.system("pause")
 
@@ -77,6 +89,8 @@ savePath = fd.askdirectory(initialdir=currdir, title="Select location to save")
 
 newWB.save(str(savePath) + "/Student Marks.xlsx")
 
-print("New Excel file created!")
+print("New Excel file created! \nFile Located in :", savePath)
 
 os.system("pause")
+
+base.mainloop()
