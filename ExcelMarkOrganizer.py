@@ -67,7 +67,13 @@ os.system("pause")
 
 print("\n------------------------------\n")
 
-subNum = int(input("\nEnter Subject Code : "))
+try:
+    subNum = int(input("\nEnter Subject Code : "))
+except ValueError:
+    print("\nSubject Code is invalid. Restart Program\n")
+    os.system("pause")
+    sys.exit()
+
 wb = op.load_workbook(path)
 sheet_obj = wb.active
 
