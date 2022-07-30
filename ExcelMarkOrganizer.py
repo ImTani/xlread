@@ -21,6 +21,8 @@ filePath = fd.askopenfilename(parent=base, initialdir=currdir,
 print("The chosen file is :", filePath)
 path = filePath
 
+os.system("pause")
+
 subNum = int(input("Enter Subject Code : "))
 wb = op.load_workbook(path)
 sheet_obj = wb.active
