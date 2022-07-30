@@ -18,10 +18,8 @@ filePath = fd.askopenfilename(parent=base, initialdir=currdir,
                                 ("Excel Files", ".xlsx")
                               ])
 
-print(filePath)
+print("The chosen file is :", filePath)
 path = filePath
-# path = input("Copy and paste excel file name here.") + ".xlsx"
-# path = 'Test' + ".xlsx"
 
 subNum = int(input("Enter Subject Code : "))
 wb = op.load_workbook(path)
@@ -55,3 +53,7 @@ for cell1, cell2, cell3 in cell_obj:
         h += 2
 
 newWB.save("Student Marks.xlsx")
+
+print("New Excel file created!")
+
+os.system("pause")
