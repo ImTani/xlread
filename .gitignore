@@ -1,4 +1,4 @@
 Student Marks.xlsx
-build/
-dist/
+build
+dist
 ExcelMarkOrganizer.spec
