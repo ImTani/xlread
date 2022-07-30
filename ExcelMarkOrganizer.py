@@ -73,7 +73,9 @@ for cell1, cell2, cell3 in cell_obj:
 
         h += 2
 
-newWB.save("Student Marks.xlsx")
+savePath = fd.askdirectory(initialdir=currdir, title="Select location to save")
+
+newWB.save(str(savePath) + "/Student Marks.xlsx")
 
 print("New Excel file created!")
 
