@@ -2,6 +2,9 @@ import openpyxl as op
 import tkinter as tk
 import tkinter.filedialog as fd
 import os
+import string
+
+d = dict(enumerate(string.ascii_uppercase, 1))
 
 base = tk.Tk()
 base.withdraw()
@@ -27,7 +30,7 @@ sheet_obj = wb.active
 maxRow = sheet_obj.max_row
 maxCol = sheet_obj.max_column
 
-cell_obj = sheet_obj['A2':'C12']
+cell_obj = sheet_obj['A2': str(d[maxCol])+str(maxRow)]
 
 for cell1, cell2, cell3 in cell_obj:
     if cell2.value == subNum:
