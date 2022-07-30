@@ -43,7 +43,7 @@ ws['A1'] = "Name"
 ws['B1'] = "Marks"
 ws['C1'] = "Grade"
 
-h = 2
+h = 3
 for cell1, cell2, cell3 in cell_obj:
     if cell2.value == subNum:
         cell2 = sheet_obj.cell(row=cell2.row + 1, column=cell2.column)
@@ -51,6 +51,6 @@ for cell1, cell2, cell3 in cell_obj:
         ws.cell(row=h, column=1).value = cell1.value
         ws.cell(row=h, column=2).value = cell2.value
         ws.cell(row=h, column=3).value = cell3.value
-        h += 1
+        h += 2
 
 newWB.save("Student Marks.xlsx")
