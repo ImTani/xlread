@@ -61,6 +61,8 @@ while again is True:
     if a == "n":
         sys.exit()
 
+base.withdraw()
+
 os.system("pause")
 
 subNum = int(input("Enter Subject Code : "))
