@@ -51,7 +51,7 @@ while again is True:
     filePath = path
 
     if filePath != '':
-        print("The chosen file is :", filePath)
+        print("The chosen file is :", filePath + "\n")
         again = False
         break
     else:
@@ -63,9 +63,11 @@ while again is True:
 
 base.withdraw()
 
+print("\n------------------------------\n")
+
 os.system("pause")
 
-subNum = int(input("Enter Subject Code : "))
+subNum = int(input("\nEnter Subject Code : "))
 wb = op.load_workbook(path)
 sheet_obj = wb.active
 
@@ -77,6 +79,8 @@ maxCol = sheet_obj.max_column
 cell_obj = sheet_obj[str(d[firstCol]) + str(firstRow):
                      str(d[maxCol]) + str(maxRow)]
 
+subNumCheck = sheet_obj['B1':'B' + str(maxRow)]
+
 newWB = op.Workbook()
 ws = newWB.active
 ws.title = "Marks for Sub. Code " + str(subNum)
@@ -86,6 +90,12 @@ ws['B1'] = "Marks"
 ws['C1'] = "Grade"
 
 h = 3
+
+if subNum in iter(subNumCheck):
+    pass
+else:
+    print("Subject Code doesn't exist. Empty File will be generated.")
+
 for cell1, cell2, cell3 in cell_obj:
     if cell2.value == subNum:
         cell2 = sheet_obj.cell(row=cell2.row + 1, column=cell2.column)
@@ -96,6 +106,7 @@ for cell1, cell2, cell3 in cell_obj:
 
         h += 2
 
+
 savePath = fd.askdirectory(initialdir=currdir, title="Select location to save")
 
 if savePath:
@@ -104,5 +115,7 @@ if savePath:
 else:
     print("Folder not selected, saving to desktop.")
     newWB.save(os.path.expanduser('~') + "/desktop" + "/Student Marks.xlsx")
+
+print("\n------------------------------\n")
 
 os.system("pause")
